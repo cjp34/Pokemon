@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20200210202821) do
 
   create_table "pokemons", force: :cascade do |t|
     t.string "species"
-    t.string "type"
+    t.string "poke_type"
     t.string "moves"
     t.string "location"
   end
