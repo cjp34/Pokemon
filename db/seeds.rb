@@ -2,9 +2,7 @@ require 'rest-client'
 require 'json'
 require_all 'apps/models'
 
-num = 10
-
-poke_data = 'https://pokeapi.co/api/v2/pokemon/?limit=#{num}'
+poke_data = 'https://pokeapi.co/api/v2/pokemon/?limit=10'
 Pokemon.destroy_all
 
 def rest_and_parse(url)
@@ -16,14 +14,14 @@ end
 poke_data_better = rest_and_parse(poke_data)
 
 def poke_name
-    poke_data = 'https://pokeapi.co/api/v2/pokemon/?limit=#{num}'
+    poke_data = 'https://pokeapi.co/api/v2/pokemon/?limit=10'
     poke_data_better = rest_and_parse(poke_data)
     poke_data_better.map { |nam| nam["name"]}
 end
 
 def poke_url_unravel
 
-    poke_data = 'https://pokeapi.co/api/v2/pokemon/?limit=#{num}'
+    poke_data = 'https://pokeapi.co/api/v2/pokemon/?limit=10'
     poke_data_better = rest_and_parse(poke_data)
 
     poke_url = poke_data_better.map { |mov| mov["url"]}
@@ -43,7 +41,7 @@ poke_url_unravel.map { |data|
     }
 end
 poke_name.each { |name| Pokemon.create(species: name)}
-get_those_types.each { |type| Pokemon.update(poke_type: type)}
+get_those_types.each { |type| Pokemon.update_attributes(poke_type: type)}
 
 
 binding.pry
