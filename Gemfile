@@ -8,4 +8,5 @@ gem "require_all"
 gem 'json'
 gem 'rest-client'
 gem 'awesome_print'
+gem 'rspec'
 

@@ -55,16 +55,21 @@ def search_options
 
     if input == 1
         #send to search_by_id
+        puts "-----------------"
         search_by_id
     elsif input == 2
         #send to search_by_species
+        puts "-----------------"
         search_species
     elsif input == 3
         #send to search_by_type
+        puts "-----------------"
         search_by_type
     elsif input == 4
         #send to search_by_location
+        puts "-----------------"
         search_by_location
     end
+    puts "-----------------"
     choose_menu_option
 end
