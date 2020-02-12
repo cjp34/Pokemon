@@ -34,6 +34,32 @@ def get_player
     choose_menu_option
 end
 
+def first_pokemon
+puts "Well #{$player_name}, your whole adventure is about to unfold in front of you!"
+gets.chomp
+puts "Let's get you your very first Pokemon!  I've found 3 Pokemon just for you to use!  One of them kinda sucks ngl"
+
+puts "Do you want the grass pokemon Bulbasur?"
+puts "Or perhaps the fire pokemon Charmander?"
+puts "And have you considered the water pokemon Squirtle?"
+puts "Press 1 for Bulbasuar, 2 for Charmander, 3 for Squirtle"
+choice = gets.chomp
+
+if choice.to_i == 1
+    puts "Congrats on the bulbasaur I guess."
+    Party.create(trainer_id: Trainer.last.id, trainer_name: $player_name, pokemon_id: 1, pokemon_species: "Bulbasaur")
+elsif choice.to_i == 2
+    puts "Excellent choice on the charmander!"
+    Party.create(trainer_id: Trainer.last.id, trainer_name: $player_name, pokemon_id: 4, pokemon_species: "Charmander")
+elsif choice.to_i == 3
+    puts "Solid pick on the squirtle."
+    Party.create(trainer_id: Trainer.last.id, trainer_name: $player_name, pokemon_id: 7, pokemon_species: "Squirtle")
+else
+    puts "Well smartass you didn't put in a valid number and now you get nothing.  Jackass"
+end
+    choose_menu_option
+end
+
 def confirm_name
 puts "Your name is #{$player_name}? Is that correct?"
 puts "Respond with Y or N"
@@ -44,7 +70,7 @@ response = gets.chomp
     elsif response == "Y"
         puts "Right!  So your name is #{$player_name}!"
         Trainer.create(name: $player_name)
-        choose_menu_option
+        first_pokemon
     elsif response == "N"
         puts "lmao sucks to suck. But okay try again"
         ask_name
@@ -82,6 +108,9 @@ _,-'       `.     |    |  /`.   \\,-'    |   \\  /   |   |    \\  |`.
        \\_.-'        |__|    `-._ |              '-.|     '-.| |   |
                                 `'                            '-._|
 TITLE
+
+system('say "Welcome to Pokemon"')
+
 
 puts "1. New Game"
 puts "2. Continue"
