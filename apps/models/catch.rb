@@ -105,9 +105,15 @@ def choose_action
         sleep(1.5)
         puts "Thrice now..."
         sleep(2.0)
-        puts "It was caught!!"
-        sleep(2.0)
-        Party.create(trainer_id: $player_name.id, trainer_name: $player_name.name, pokemon_id: get_id[0].id, pokemon_species: get_id[0].species)
+        M = rand(255)
+        if M <= get_id[0].catch_rate
+            puts "It was caught!!"
+            sleep(2.0)
+            Party.create(trainer_id: $player_name.id, trainer_name: $player_name.name, pokemon_id: get_id[0].id, pokemon_species: get_id[0].species)
+        else
+            puts "Yikes! It wasn't caught!! You have 2 more tries to catch"
+            choose_action
+        end
     elsif response == 2
         sleep(1.0)
         puts "You got away safely...lil bitch"
