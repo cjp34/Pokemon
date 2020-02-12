@@ -4,6 +4,8 @@ class CreatePokemon < ActiveRecord::Migration[5.0]
       t.string :species
       t.string :poke_type
       t.string :location
+      t.integer :catch_rate
+      t.boolean :evolve
     end
   end
 end

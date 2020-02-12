@@ -20,9 +20,11 @@ ActiveRecord::Schema.define(version: 20200210202821) do
   end
 
   create_table "pokemons", force: :cascade do |t|
-    t.string "species"
-    t.string "poke_type"
-    t.string "location"
+    t.string  "species"
+    t.string  "poke_type"
+    t.string  "location"
+    t.integer "catch_rate"
+    t.boolean "evolve"
   end
 
   create_table "trainers", force: :cascade do |t|

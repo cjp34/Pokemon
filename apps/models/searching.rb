@@ -13,6 +13,7 @@ end
 
 def search_by_type
     puts "What type of Pokemon are you looking for?"
+    puts "Options include: Fire, Water, Grass, Rock, Ground, Steel, Ghost, Poison, Flying, Normal, Psychic, Dragon, Electric, Fighting, Bug, Ice"
     input = gets.chomp.capitalize
     Pokemon.all.select {|pokemon| 
         if pokemon[:poke_type].include? input
@@ -23,6 +24,7 @@ end
 
 def search_by_location
     puts "What location do you want to search?"
+    puts "Options include: Field, Ocean, Forest, Cave"
     input = gets.chomp.capitalize
     Pokemon.all.select {|pokemon| 
         if pokemon[:location] == input
@@ -33,6 +35,7 @@ end
 
 def search_by_id
     puts "What Pokemon ID are you looking for?"
+    puts "Options include: 1 - 151"
     input = gets.chomp.to_i
     Pokemon.all.select {|pokemon| 
         if pokemon[:id] == input
@@ -69,6 +72,10 @@ def search_options
         #send to search_by_location
         puts "-----------------"
         search_by_location
+    else
+        puts "Not a valid input"
+        puts "-----------------"
+        search_options
     end
     puts "-----------------"
     choose_menu_option
