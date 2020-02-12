@@ -4,9 +4,6 @@ def scroll(text, mili_s=0.04)
     text.each_char{|c| putc c ; sleep mili_s; $stdout.flush }
 end
 
-
-
-
 # This is after they have selected continue
 def choose_menu_option
     puts "What would you like to do?"
@@ -32,15 +29,69 @@ def get_player
     puts "Please enter your name"
     input = gets.chomp
     $player = Trainer.find_by name: input
-    puts "Welcome #{input}!"
+    puts "Welcome back #{input}!"
     sleep (1)
     choose_menu_option
-end 
+end
 
+def confirm_name
+puts "Your name is #{$player_name}? Is that correct?"
+puts "Respond with Y or N"
 
+response = gets.chomp
+    if response != "Y" && response != "N"
+        puts "Bruh thats the wrong letter"
+    elsif response == "Y"
+        puts "Right!  So your name is #{$player_name}!"
+        Trainer.create(name: $player_name)
+        choose_menu_option
+    elsif response == "N"
+        puts "lmao sucks to suck. But okay try again"
+        ask_name
+    end
+end
 
+def ask_name
+puts "Please, tell me.  What is your name?"
+$player_name = gets.chomp
+confirm_name
+end
 
-binding.pry
+def new_game_init
+    puts "Welcome to the world of Pokemon!"
+    gets.chomp
+    puts "My name is Professor Oak, but everyone just calls me the Pokemon Professor!"
+    gets.chomp
+    puts "The world of Pokemon is full of moral and ethical contradictions that we will never discuss.  Like pokemon faint in battle but
+     do not die, however there is a pokemon graveyard in Lavender Town so we know they can die.  What does that mean for you?"
+    gets.chomp
+    ask_name
+end
+
+puts <<-TITLE
+                                  ,'\\
+    _.----.        ____         ,'  _\\   ___    ___     ____
+_,-'       `.     |    |  /`.   \\,-'    |   \\  /   |   |    \\  |`.
+\\     __    \\     '-.  | /   `.  ___    |    \\/    |   '-.   \\ |  |
+ \\.   \\ \\   |  __   |  |/    ,','_  `.  |          | __  |    \\|  |
+  \\    \\/   /,' _`. |      ,' // / /    |          ,' _`.|     |  |
+   \\     ,-'/  /   \\    ,'   | \\/ / ,`. |         /  /   \\  |     |
+    \\    \\ |   \\_/  |   `-.  \\    `'  / |  |    ||   \\_/  | |\\    |
+     \\    \\ \\      /       `-.`.___,-'  |  |\\  /| \\      /  | |   |
+      \\    \\ `.__,' |  |`-._    `|      |__| \\/ |  `.__,'|  | |   |
+       \\_.-'        |__|    `-._ |              '-.|     '-.| |   |
+                                `'                            '-._|
+TITLE
+
+puts "1. New Game"
+puts "2. Continue"
+start_y = gets.chomp.to_i
+
+if start_y == 2
+    get_player
+elsif start_y == 1
+    new_game_init
+end
 
 
 
