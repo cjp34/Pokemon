@@ -5,11 +5,13 @@ def get_poke_species(id)
         end
     }[0].species
 end
+
 def can_evolve
     Pokemon.all.select {|pokemon|
         pokemon.evolve == "True"
     }.map { |poke| poke.species}
 end
+
 def party_pokemon
     arr = []
     Party.all.select { |poke|
@@ -19,9 +21,11 @@ def party_pokemon
         }
     arr
 end
+
 def party_evolve
     party_pokemon & can_evolve
 end
+
 def show_evo_options
     if party_evolve.length == 0
         puts "You don’t have any pokemon to evolve!"

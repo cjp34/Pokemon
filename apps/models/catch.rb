@@ -16,6 +16,16 @@ def get_id
         }       
 end
 
+def has_legendary
+arr = []
+Party.all.select { |poke|
+    if poke.trainer_id == $player_name.id 
+        arr << poke.pokemon_species
+    end
+}
+arr
+end
+
 
 def pick_location
     puts "Where would you like to catch Pokemon?"
@@ -23,67 +33,92 @@ def pick_location
     puts "2. #{"Ocean".light_blue}"
     puts "3. #{"Forest".green}"
     puts "4. #{"Cave".swap}"
-    input = gets.chomp
+    input = gets.chomp.upcase
 
     puts "Searching..."
     sleep(2)
 
-    if input == "1" || input == "Field"
+    if input == "1" || input == "FIELD"
         $current_poke = random_pokemon("Field").sample
         puts "A wild #{$current_poke} appeared!"
         sleep(1.5)
         puts "-----------------"
         choose_action
-    elsif input == "2" || input == "Ocean"
+    elsif input == "2" || input == "OCEAN"
         $current_poke = random_pokemon("Ocean").sample
         puts "A wild #{$current_poke} appeared!"
         sleep(3)
         puts "-----------------"
         choose_action
-    elsif input == "3" || input == "Forest"
+    elsif input == "3" || input == "FOREST"
         $current_poke = random_pokemon("Forest").sample
         puts "A wild #{$current_poke} appeared!"
         sleep(3)
         puts "-----------------"
         choose_action
-    elsif input == "4" || input == "Cave"
+    elsif input == "4" || input == "CAVE"
         $current_poke = random_pokemon("Cave").sample
         puts "A wild #{$current_poke} appeared!"
         sleep(3)
         puts "-----------------"
         choose_action
-    elsif input == "Seafoam Isles"
+    elsif input == "SEAFOAM ISLES"
+        if has_legendary.include?("Articuno")
+            puts "There is no Pokemon here..."
+            pick_location
+        else
         $current_poke = random_pokemon("Seafoam Isles").sample
         puts "The legendary Bird of Ice #{$current_poke} appeared!"
         sleep(3)
         puts "-----------------"
         choose_action
-    elsif input == "Power Plant"
+        end
+    elsif input == "POWER PLANT"
+        if has_legendary.include?("Zapdos")
+            puts "There is no Pokemon here..."
+            pick_location
+        else
         $current_poke = random_pokemon("Power Plant").sample
         puts "Your nosy ass found the Legendary Bird of Thunder #{$current_poke}!"
         sleep(3)
         puts "-----------------"
         choose_action
-    elsif input == "Mt. Ember"
+        end
+    elsif input == "MT. EMBER"
+        if has_legendary.include?("Moltres")
+            puts "There is no Pokemon here..."
+            pick_location
+        else
         $current_poke = random_pokemon("Mt. Ember").sample
         puts "How did you find the Legendary Bird of Fire #{$current_poke}???"
         sleep(3)
         puts "-----------------"
         choose_action
-    elsif input == "Cerulean Cave"
+        end
+    elsif input == "CERULEAN CAVE"
+        if has_legendary.include?("Mewtwo")
+            puts "There is no Pokemon here..."
+            pick_location
+        else
         $current_poke = random_pokemon("Cerulean Cave").sample
         puts "The apotheosis of mankind's arrogance #{$current_poke} appears before you..."
         sleep(3)
         puts "-----------------"
         choose_action
-    elsif input == "Faraway Island"
+        end
+    elsif input == "FARAWAY ISLAND"
+        if has_legendary.include?("Mew")
+            puts "There is no Pokemon here..."
+            pick_location
+        else
         $current_poke = random_pokemon("Faraway Island").sample
         puts "The ancestor of all Pokemon #{$current_poke} appeared!"
         sleep(3)
         puts "-----------------"
         choose_action
+        end
     elsif
-        input == "Exit"
+        input == "EXIT"
         choose_menu_option
     else
         puts "This place doesn't exist!"
@@ -98,7 +133,7 @@ def choose_action
     puts "1. Catch"
     puts "2. Run"
 
-    response = gets.chomp
+    response = gets.chomp.capitalize
     
     if response == '1' || response == "Catch"
         puts "You threw a pokeball!"
