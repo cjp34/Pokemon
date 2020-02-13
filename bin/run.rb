@@ -11,6 +11,7 @@ def choose_menu_option
     puts "1. Go catch new Pokemon"
     puts "2. Search your Pokedex"
     puts "3. Check your party"
+    puts "4. Evolve Pokemon"
     input = gets.chomp
 
     if input == '1'
@@ -29,6 +30,9 @@ def choose_menu_option
         #go to party.rb?
         puts "-----------------"
         show_party
+    elsif input == '4'
+        puts "-----------------"
+        show_evo_options
     elsif input == "exit"
         abort
     else

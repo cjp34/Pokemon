@@ -9,8 +9,15 @@ def show_party
 
     arr.each do |name| puts name end
         puts "-----------------"
-        gets.chomp
+    puts "Would you like to release any Pokemon?"
+    puts "Respond with Y or N"
+    response = gets.chomp.capitalize
+    if response == "Y"
+        #delete model options
+        delete_options
+    elsif response == "N"
         choose_menu_option
+    end
 end
 
 def check_party_length
@@ -21,14 +28,4 @@ def check_party_length
         end
     }
     arr.length 
-end
-
-def clear_players_party
-    arr = []
-    Party.all.select { |entry|
-        if entry.trainer_id == $player_name.id 
-            arr << entry.id
-        end
-    }
-    Party.destroy(arr)
 end

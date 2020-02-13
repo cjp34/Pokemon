@@ -13,7 +13,9 @@ end
 
 def search_by_type
     puts "What type of Pokemon are you looking for?"
-    puts "Options include: Fire, Water, Grass, Rock, Ground, Steel, Ghost, Poison, Flying, Normal, Psychic, Dragon, Electric, Fighting, Bug, Ice"
+    puts "Options include: Fire, Water, Grass, Rock, Ground, 
+                 Steel, Ghost, Poison, Flying, Normal, 
+                 Psychic, Dragon, Electric, Fighting, Bug, Ice"
     input = gets.chomp.capitalize
     Pokemon.all.select {|pokemon| 
         if pokemon[:poke_type].include? input

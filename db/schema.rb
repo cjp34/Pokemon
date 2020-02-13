@@ -19,12 +19,13 @@ ActiveRecord::Schema.define(version: 20200210202821) do
     t.string  "pokemon_species"
   end
 
-  create_table "pokemons", force: :cascade do |t|
-    t.string  "species"
-    t.string  "poke_type"
-    t.string  "location"
+  create_table "pokemons", id: false, force: :cascade do |t|
+    t.integer "id"
+    t.text    "species"
+    t.text    "poke_type"
+    t.text    "location"
     t.integer "catch_rate"
-    t.boolean "evolve"
+    t.text    "evolve"
   end
 
   create_table "trainers", force: :cascade do |t|
