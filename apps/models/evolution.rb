@@ -8,7 +8,7 @@ end
 
 def can_evolve
     Pokemon.all.select {|pokemon|
-        pokemon.evolve == "True"
+        pokemon.evolve == "TRUE"
     }.map { |poke| poke.species}
 end
 

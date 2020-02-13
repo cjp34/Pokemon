@@ -1,5 +1,6 @@
 require 'colorize'
 require_relative '../config/environment'
+puts "\e[H\e[2J"
 def scroll(text, mili_s=0.04)
     text.each_char{|c| putc c ; sleep mili_s; $stdout.flush }
 end
