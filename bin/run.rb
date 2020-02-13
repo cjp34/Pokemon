@@ -8,6 +8,7 @@ end
 def choose_menu_option
     $catch_tries = 3
     puts "What would you like to do?"
+    puts "-----------------"
     puts "1. Go catch new Pokemon"
     puts "2. Search your Pokedex"
     puts "3. Check your party"
@@ -37,6 +38,7 @@ def choose_menu_option
         abort
     else
         puts "Input invalid"
+        puts "-----------------"
         choose_menu_option 
     end
 end
@@ -44,8 +46,10 @@ end
 
 def get_player
     puts "Please enter your name"
+    puts "-----------------"
     input = gets.chomp
     $player_name = Trainer.find_or_create_by(name: input)
+    puts "-----------------"
     puts "Welcome back #{input}!"
     sleep (1)
     puts "-----------------"
@@ -58,9 +62,13 @@ gets.chomp
 puts "Let's get you your very first Pokemon!  I've found 3 Pokemon just for you to use!  One of them kinda sucks ngl"
 
 puts "Do you want the " + "grass ".colorize(:green) + "pokemon "+ "Bulbasur".colorize(:green)+"?"
+puts "-----------------"
 puts "Or perhaps the " + "fire ".colorize(:red) + "pokemon "+ "Charmander".colorize(:red)+"?"
+puts "-----------------"
 puts "And have you considered the " + "water ".colorize(:blue) + "pokemon "+ "Squirtle".colorize(:blue)+"?"
+puts "-----------------"
 puts "Press 1 for #{"Bulbasuar".green}, 2 for #{"Charmander".red}, 3 for #{"Squirtle".blue}"
+puts "-----------------"
 choice = gets.chomp
 
 if choice.to_i == 1
@@ -82,10 +90,13 @@ end
 def confirm_name
 puts "Your name is #{$player_name}? Is that correct?"
 puts "Respond with Y or N"
+puts "-----------------"
 
 response = gets.chomp.capitalize
     if response != "Y" && response != "N"
         puts "Bruh thats the wrong letter"
+        puts "-----------------"
+        confirm_name
     elsif response == "Y"
         puts "Right!  So your name is #{$player_name}!"
         $player_name = Trainer.find_or_create_by(name: $player_name)
