@@ -1,46 +1,48 @@
 def get_poke_species(id)
-    Pokemon.all.select {|pokemon| 
+    Pokemon.all.select {|pokemon|
         if pokemon[:id] == id
             pokemon[:species]
         end
-    }[0].species     
+    }[0].species
 end
-
 def can_evolve
-    Pokemon.all.select {|pokemon| 
+    Pokemon.all.select {|pokemon|
         pokemon.evolve == "True"
     }.map { |poke| poke.species}
 end
-
 def party_pokemon
     arr = []
     Party.all.select { |poke|
-        if poke.trainer_id == $player_name.id 
+        if poke.trainer_id == $player_name.id
             arr << poke.pokemon_species
         end
         }
     arr
 end
-
 def party_evolve
-    party_pokemon & can_evolve 
+    party_pokemon & can_evolve
 end
-
 def show_evo_options
-    i = 0
-    puts "Here are the Pokemon you can evolve. Please enter a number"
-    puts "-----------------"
-    while i < party_evolve.length
-        puts "#{i +1}. #{party_evolve[i]}"
-        i += 1
-    end
-    input = gets.chomp.to_i
-    if input > 0 || input <= party_evolve.length
-        $poke_to_evolve = party_evolve[input - 1]
-        evolve
+    if party_evolve.length == 0
+        puts "You don’t have any pokemon to evolve!"
+        puts "-----------------"
+        choose_menu_option
     else
-        puts "This is not a valid selection"
-        show_evo_options
+        i = 0
+        puts "Here are the Pokemon you can evolve. Please enter a number"
+        puts "-----------------"
+        while i < party_evolve.length
+            puts "#{i +1}. #{party_evolve[i]}"
+            i += 1
+        end
+        input = gets.chomp.to_i
+        if input > 0 || input <= party_evolve.length
+            $poke_to_evolve = party_evolve[input - 1]
+            evolve
+        else
+            puts "This is not a valid selection"
+            show_evo_options
+        end
     end
 end
 
