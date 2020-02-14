@@ -44,7 +44,7 @@ def delete_options
     puts "1. Release a single Pokemon?"
     puts "2. Release all Pokemon?"
     puts "3. Go back to Menu?"
-    response = gets.chomp
+    response = gets.chomp.capitalize
 
     if response == '1'
         #go to release single
@@ -61,5 +61,10 @@ def delete_options
         end
     elsif response == '3'
         choose_menu_option
+    elsif response == 'Exit'
+        abort
+    else
+        puts "That is not a valid input."
+        delete_options
     end
 end
